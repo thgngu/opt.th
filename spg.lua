@@ -33,6 +33,9 @@ function M.solve(...)
 
    local f_hist = torch.Tensor(maxit):typeAs(x0)
 
+   results.feval = 0
+   results.geval = 0
+
    local linesearchCheck = argcheck{
       pack=true,
       -- TODO: Comments
@@ -61,6 +64,7 @@ function M.solve(...)
       local lambda = 1
 
       local f_p = f(x_p)
+      results.feval = results.feval + 1
       while f_p > f_max + gamma*lambda*delta do
          local lambda_t = 0.5*(lambda^2)*delta/(f_p-f_k-lambda*delta)
          if lambda_t >= sigma_1 and lambda_t <= sigma_2*lambda then
@@ -70,6 +74,7 @@ function M.solve(...)
          end
          x_p = x_k + torch.mul(d_k, lambda)
          f_p = f(x_p)
+         results.feval = results.feval + 1
       end
       return lambda
    end
@@ -78,6 +83,8 @@ function M.solve(...)
    local x = proj(x0)
    local f_new = f(x)
    local g_new = g(x)
+   results.feval = results.feval + 1
+   results.geval = results.geval + 1
    local d = proj(x - g_new) - x
    local alpha = math.min(alpha_max, math.max(alpha_min, 1/torch.max(d)))
 
@@ -102,6 +109,8 @@ function M.solve(...)
       x:add(s)
       f_new = f(x)
       g_new = g(x)
+      results.feval = results.feval + 1
+      results.geval = results.geval + 1
       local y = g_new - g_k
       local beta = torch.dot(s, y)
       if beta < 0 then
