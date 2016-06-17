@@ -31,6 +31,7 @@ http://www.ime.usp.br/~egbirgin/publications/bmr2.pdf
 "Nonmonotone spectral projected gradient methods on convex sets."
 SIAM Journal on Optimization 10.4 (2000): 1196-1211.
 http://epubs.siam.org/doi/pdf/10.1137/S1052623497330963
+```
 
 # Installation
 
