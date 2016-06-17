@@ -12,7 +12,8 @@ local spgCheck = argcheck{
    {name='proj', type='function'},
    {name='m', type='number', default=10, opt=true},
    {name='eps', type='number', default=1e-6, opt=true},
-   {name='maxit', type='number', default=1000, opt=true}
+   {name='maxit', type='number', default=1000, opt=true},
+   {name='callback', type='function', opt=true},
 }
 function M.solve(...)
    local args = spgCheck(...)
@@ -25,6 +26,7 @@ function M.solve(...)
    local m = args.m
    local eps = args.eps
    local maxit = args.maxit
+   local callback = args.callback
 
    local alpha_min = 1e-3
    local alpha_max = 1e3
@@ -74,6 +76,7 @@ function M.solve(...)
 
    -- If x_0 \not\in \Omega, replace x_0 by P(x_0)
    local x = proj(x0)
+   local f_new = f(x)
    local g_new = g(x)
    local d = proj(x - g_new) - x
    local alpha = math.min(alpha_max, math.max(alpha_min, 1/torch.max(d)))
@@ -82,13 +85,14 @@ function M.solve(...)
    results.bestX = x:clone()
 
    for k = 1, maxit do
-      local f_k = f(x)
+      local f_k = f_new
       local g_k = g_new
       f_hist[k] = f_k
       if results.bestF == nil or f_k < results.bestF then
          results.bestF = f_k
          results.bestX:copy(x)
       end
+      if callback then callback(k, results.bestF) end
       d = proj(x - torch.mul(g_k, alpha)) - x
       if d:norm(2) < eps then
          break
@@ -96,6 +100,7 @@ function M.solve(...)
       local lambda = linesearch(x, f_k, g_k, d, k)
       local s = torch.mul(d, lambda)
       x:add(s)
+      f_new = f(x)
       g_new = g(x)
       local y = g_new - g_k
       local beta = torch.dot(s, y)
