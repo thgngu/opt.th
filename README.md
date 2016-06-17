@@ -40,10 +40,6 @@ After installing Torch, `spg.torch` can be installed with:
 1. `luarocks install https://raw.githubusercontent.com/bamos/spg.torch/master/spg-scm-1.rockspec`
 2. Cloning this repo and running `luarocks make`.
 
-# Usage
-
-The following solves the linear program
-
 # Tests
 
 After installing the library with `luarocks`, our tests in
