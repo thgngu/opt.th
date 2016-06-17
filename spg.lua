@@ -35,16 +35,18 @@ function M.solve(...)
       pack=true,
       -- TODO: Comments
       {name='x_k', type='torch.*Tensor'},
+      {name='f_k', type='number'},
       {name='g_k', type='torch.*Tensor'},
       {name='d_k', type='torch.*Tensor'},
       {name='k', type='number'}
    }
    local function linesearch(...)
-      local args = linesearchCheck(...)
-      local x_k = args.x_k
-      local g_k = args.g_k
-      local d_k = args.d_k
-      local k = args.k
+      local args_ls = linesearchCheck(...)
+      local x_k = args_ls.x_k
+      local f_k = args_ls.f_k
+      local g_k = args_ls.g_k
+      local d_k = args_ls.d_k
+      local k = args_ls.k
 
       local gamma = 1e-4
       local sigma_1 = 0.1
@@ -87,11 +89,11 @@ function M.solve(...)
          results.bestF = f_k
          results.bestX:copy(x)
       end
-      local d = proj(x - torch.mul(g_k, alpha)) - x
+      d = proj(x - torch.mul(g_k, alpha)) - x
       if d:norm(2) < eps then
          break
       end
-      local lambda = linesearch(x, g_k, d, k)
+      local lambda = linesearch(x, f_k, g_k, d, k)
       local s = torch.mul(d, lambda)
       x:add(s)
       g_new = g(x)
