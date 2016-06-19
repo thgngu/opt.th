@@ -21,5 +21,6 @@ build = {
    type = "builtin",
    modules = {
       ["spg"] = "spg.lua",
+      ["spg.proj"] = "proj.lua",
    }
 }
