@@ -1,3 +1,5 @@
+local torch = require 'torch'
+
 local M = {}
 
 function M.boxInPlace(x, l, u)
