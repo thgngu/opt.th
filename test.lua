@@ -3,12 +3,12 @@
 local torch = require 'torch'
 torch.setdefaulttensortype('torch.FloatTensor')
 
-local spg = require 'spg'
+local coptim = require 'cvx-optim'
 
 local tester = torch.Tester()
-local spgTest = torch.TestSuite()
+local cOptimTest = torch.TestSuite()
 
-function spgTest.Simple()
+function cOptimTest.SPGsimple()
    -- driver1.f from SPG
 
    -- Dimension of the problem.
@@ -37,11 +37,11 @@ function spgTest.Simple()
       return r
    end
 
-   local results = spg.solve(x0, f, g, proj, m, eps2, maxit)
+   local results = coptim.spg.solve(x0, f, g, proj, m, eps2, maxit)
 
    tester:asserteq(results.bestF, 0, 'Invalid optimal value.')
    tester:assertTensorEq(results.bestX, torch.zeros(n), 1e-5, 'Invalid optimal location.')
 end
 
-tester:add(spgTest)
+tester:add(cOptimTest)
 tester:run()
