@@ -8,7 +8,7 @@ local coptim = require 'cvx-optim'
 local tester = torch.Tester()
 local cOptimTest = torch.TestSuite()
 
-function cOptimTest.SPGsimple()
+function cOptimTest.simple()
    -- driver1.f from SPG
 
    -- Dimension of the problem.
@@ -38,6 +38,11 @@ function cOptimTest.SPGsimple()
    end
 
    local results = coptim.spg.solve(x0, f, g, proj, m, eps2, maxit)
+
+   tester:asserteq(results.bestF, 0, 'Invalid optimal value.')
+   tester:assertTensorEq(results.bestX, torch.zeros(n), 1e-5, 'Invalid optimal location.')
+
+   results = coptim.pgd.solve(x0, f, g, proj)
 
    tester:asserteq(results.bestF, 0, 'Invalid optimal value.')
    tester:assertTensorEq(results.bestX, torch.zeros(n), 1e-5, 'Invalid optimal location.')

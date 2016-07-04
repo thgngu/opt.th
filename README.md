@@ -10,30 +10,16 @@
 
 # Algorithms
 
-## Spectral Projected Gradient
+## Spectral Projected Gradient (SPG)
 
-`cvx-optim.spg` implements SPG [1,2] for convex-constrained optimization
-that solves problems of the form
+`cvx-optim.spg` implements the Spectral Projected Gradient (SPG)
+method [1,2] for convex-constrained optimization.
 
-```
-min f(x) subject to x∈Ω
-```
+## Projected Gradient Descent (PGD)
 
-where Ω is a closed convex set and
-f is defined and has continuous partial derivatives
-on an open set than contains Ω.
-
-```
-[1] Birgin, Ernesto G., José Mario Martínez, and Marcos Raydan.
-"Algorithm 813: SPG—software for convex-constrained optimization."
-ACM Transactions on Mathematical Software (TOMS) 27.3 (2001): 340-349.
-http://www.ime.usp.br/~egbirgin/publications/bmr2.pdf
-
-[2] Birgin, Ernesto G., José Mario Martínez, and Marcos Raydan.
-"Nonmonotone spectral projected gradient methods on convex sets."
-SIAM Journal on Optimization 10.4 (2000): 1196-1211.
-http://epubs.siam.org/doi/pdf/10.1137/S1052623497330963
-```
+`cvx-optim.pgd` implements projected gradient descent (PGD) for
+convex-constrained optimization with the proximal algorithm
+described in Section 4.3 of [3].
 
 # Installation
 
@@ -52,3 +38,22 @@ can be run with `th test.lua`.
 
 This repository is
 [Apache-licensed](https://github.com/bamos/cvx-optim.torch/blob/master/LICENSE).
+
+# References
+
+```
+[1] Birgin, Ernesto G., José Mario Martínez, and Marcos Raydan.
+"Algorithm 813: SPG—software for convex-constrained optimization."
+ACM Transactions on Mathematical Software (TOMS) 27.3 (2001): 340-349.
+http://www.ime.usp.br/~egbirgin/publications/bmr2.pdf
+
+[2] Birgin, Ernesto G., José Mario Martínez, and Marcos Raydan.
+"Nonmonotone spectral projected gradient methods on convex sets."
+SIAM Journal on Optimization 10.4 (2000): 1196-1211.
+http://epubs.siam.org/doi/pdf/10.1137/S1052623497330963
+
+[3] Parikh, Neal, and Stephen P. Boyd.
+"Proximal Algorithms."
+Foundations and Trends in optimization 1.3 (2014): 127-239.
+http://www.web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
+```

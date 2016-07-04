@@ -22,6 +22,7 @@ build = {
    modules = {
       ["cvx-optim"] = "init.lua",
       ["cvx-optim.spg"] = "spg.lua",
+      ["cvx-optim.pgd"] = "pgd.lua",
       ["cvx-optim.proj"] = "proj.lua",
    }
 }
