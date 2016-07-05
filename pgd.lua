@@ -73,7 +73,7 @@ function M.solve(...)
          results.bestF = f_x
          results.bestX:copy(x)
       end
-      if callback then callback(k, results.bestF) end
+      if callback then callback(k, results.bestF, y, g_y, lambda) end
    end
 
    return results
