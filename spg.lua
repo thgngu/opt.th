@@ -14,6 +14,8 @@ local spgCheck = argcheck{
    {name='eps', type='number', default=1e-6, opt=true},
    {name='maxit', type='number', default=1000, opt=true},
    {name='callback', type='function', opt=true},
+   {name='doLinesearch', type='boolean', default=true, opt=true},
+   {name='identityHess', type='boolean', default=false, opt=true},
 }
 function M.solve(...)
    local args = spgCheck(...)
@@ -27,6 +29,8 @@ function M.solve(...)
    local eps = args.eps
    local maxit = args.maxit
    local callback = args.callback
+   local doLinesearch = args.doLinesearch
+   local identityHess = args.identityHess
 
    local alpha_min = 1e-3
    local alpha_max = 1e3
@@ -86,7 +90,10 @@ function M.solve(...)
    results.feval = results.feval + 1
    results.geval = results.geval + 1
    local d = proj(x - g_new) - x
-   local alpha = math.min(alpha_max, math.max(alpha_min, 1/torch.max(d)))
+   local alpha = 1.0
+   if not identityHess then
+      alpha = math.min(alpha_max, math.max(alpha_min, 1/torch.max(d)))
+   end
 
    results.bestF = nil
    results.bestX = x:clone()
@@ -104,7 +111,7 @@ function M.solve(...)
       if d:norm(2) < eps then
          break
       end
-      local lambda = linesearch(x, f_k, g_k, d, k)
+      local lambda = doLinesearch and linesearch(x, f_k, g_k, d, k) or 1.0
       local s = torch.mul(d, lambda)
       x:add(s)
       f_new = f(x)
@@ -112,11 +119,13 @@ function M.solve(...)
       results.feval = results.feval + 1
       results.geval = results.geval + 1
       local y = g_new - g_k
-      local beta = torch.dot(s, y)
-      if beta < 0 then
-         alpha = alpha_max
-      else
-         alpha = math.min(alpha_max, math.max(alpha_min, torch.dot(s, s)/beta))
+      if not identityHess then
+         local beta = torch.dot(s, y)
+         if beta < 0 then
+            alpha = alpha_max
+         else
+            alpha = math.min(alpha_max, math.max(alpha_min, torch.dot(s, s)/beta))
+         end
       end
    end
 
