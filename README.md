@@ -8,6 +8,14 @@
 [license-image]: http://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
 [license]: LICENSE
 
+---
+
+You may also be interested in:
++ Torch [Gurobi](http://www.gurobi.com/) bindings at
+  [bamos/gurobi.torch](https://github.com/bamos/gurobi.torch).
++ Torch [ECOS](https://github.com/embotech/ecos) bindings at
+  [bamos/ecos.torch](https://github.com/bamos/ecos.torch).
+
 # Algorithms
 
 ## Spectral Projected Gradient (SPG)
@@ -20,6 +28,8 @@ method [1,2] for convex-constrained optimization.
 `cvx-optim.pgd` implements projected gradient descent (PGD) for
 convex-constrained optimization with the proximal algorithm
 described in Section 4.3 of [3].
+
+## Projected Gradient Descent (PGD)
 
 # Installation
 
