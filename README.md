@@ -29,8 +29,6 @@ method [1,2] for convex-constrained optimization.
 convex-constrained optimization with the proximal algorithm
 described in Section 4.3 of [3].
 
-## Projected Gradient Descent (PGD)
-
 # Installation
 
 After installing Torch, `cvx-optim.torch` can be installed with:
