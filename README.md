@@ -10,15 +10,14 @@
 
 ---
 
-    Thanks for your interest in this project!
-    It's a work-in-progress and I have a lot more planned in this space,
-    including more algorithms, mini-batch support, and Python implementations.
-    I'll post on [my blog](http://bamos.github.io/blog/)
-    ([RSS](http://bamos.github.io/atom.xml)) with some
-    visualizations and a release when I'm finished.
-
-    -Brandon.
-    2016-07-20
+> Thanks for your interest in this project!
+> It's a work-in-progress and I have a lot more planned in this space,
+> including more algorithms, mini-batch support, and Python implementations.
+> I'll post on [my blog](http://bamos.github.io/blog/)
+> ([RSS](http://bamos.github.io/atom.xml)) with some
+> visualizations and a release when I'm finished.
+>
+> -Brandon. [2016-07-20]
 
 ---
 
