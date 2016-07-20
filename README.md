@@ -10,11 +10,25 @@
 
 ---
 
+    Thanks for your interest in this project!
+    It's a work-in-progress and I have a lot more planned in this space,
+    including more algorithms, mini-batch support, and Python implementations.
+    I'll post on [my blog](http://bamos.github.io/blog/)
+    ([RSS](http://bamos.github.io/atom.xml)) with some
+    visualizations and a release when I'm finished.
+
+    -Brandon.
+    2016-07-20
+
+---
+
 You may also be interested in:
 + Torch [Gurobi](http://www.gurobi.com/) bindings at
   [bamos/gurobi.torch](https://github.com/bamos/gurobi.torch).
 + Torch [ECOS](https://github.com/embotech/ecos) bindings at
   [bamos/ecos.torch](https://github.com/bamos/ecos.torch).
+
+---
 
 # Algorithms
 
@@ -28,6 +42,10 @@ method [1,2] for convex-constrained optimization.
 `cvx-optim.pgd` implements projected gradient descent (PGD) for
 convex-constrained optimization with the proximal algorithm
 described in Section 4.3 of [3].
+
+## Bundle Method (in progress)
+
+Algorithm 1 of [4].
 
 # Installation
 
@@ -64,4 +82,10 @@ http://epubs.siam.org/doi/pdf/10.1137/S1052623497330963
 "Proximal Algorithms."
 Foundations and Trends in optimization 1.3 (2014): 127-239.
 http://www.web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
+
+[4] Smola, Alex J., S.V.N. Vishwanathan, and Quoc V. Le
+"Bundle methods for machine learning."
+Advances in Neural Information Processing Systems. 2007.
+
+http://machinelearning.wustl.edu/mlpapers/paper_files/NIPS2007_470.pdf
 ```
