@@ -125,7 +125,7 @@ function M.solveBatch(...)
       if k > 1 and ds:norm(2) < eps then
          break
       end
-      local f_ys = f(ys)
+      -- local f_ys = f(ys)
       local g_ys = g(ys)
       prev_xs = xs
       local f_xs
@@ -158,7 +158,7 @@ function M.solveBatch(...)
          local betterIdxsX = betterIdxs:view(-1,1):repeatTensor(1, xs_flat:size(2)):viewAs(xs)
          results.bestXs[betterIdxsX] = xs[betterIdxsX]
       end
-      if callback then callback(k, results.bestF, y, g_y, lambda) end
+      if callback then callback(k, results.bestFs, ys, g_ys, lambda) end
    end
 
    return results
