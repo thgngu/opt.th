@@ -3,7 +3,7 @@
 *Torch library for convex optimization.*
 
 [travis-image]: https://travis-ci.org/bamos/cvx-optim.torch.png?branch=master
-[travis]: http://travis-ci.org/bamos/cvx-optim
+[travis]: http://travis-ci.org/bamos/cvx-optim.torch
 
 [license-image]: http://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
 [license]: LICENSE
