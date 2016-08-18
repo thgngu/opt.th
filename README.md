@@ -1,24 +1,12 @@
-# cvx-optim.torch • [ ![Build Status] [travis-image] ] [travis] [ ![License] [license-image] ] [license]
+# opt.th • [ ![Build Status] [travis-image] ] [travis] [ ![License] [license-image] ] [license]
 
-*Torch library for convex optimization.*
+*Torch library for optimization.*
 
-[travis-image]: https://travis-ci.org/bamos/cvx-optim.torch.png?branch=master
-[travis]: http://travis-ci.org/bamos/cvx-optim.torch
+[travis-image]: https://travis-ci.org/bamos/opt.th.png?branch=master
+[travis]: http://travis-ci.org/bamos/opt.th
 
 [license-image]: http://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
 [license]: LICENSE
-
----
-
-> Thanks for your interest in this project!
-> It's a work-in-progress and I have a lot more planned in this space,
-> including more algorithms, mini-batch support, and Python implementations.
-> I'll post on [my blog](http://bamos.github.io/blog/)
-> ([RSS](http://bamos.github.io/atom.xml))
-> and [tweet](https://twitter.com/brandondamos)
-> with some visualizations and a release when I'm finished.
->
-> -Brandon. [2016-07-20]
 
 ---
 
@@ -27,6 +15,8 @@ You may also be interested in:
   [bamos/gurobi.torch](https://github.com/bamos/gurobi.torch).
 + Torch [ECOS](https://github.com/embotech/ecos) bindings at
   [bamos/ecos.torch](https://github.com/bamos/ecos.torch).
++ [bamos/opt.py](https://github.com/bamos/opt.py):
+  Python library for optimization.
 
 ---
 
